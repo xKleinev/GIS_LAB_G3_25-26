@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <radialGradient id="popParis" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4a1c14" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#8a3b2f" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#8a3b2f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="popLyon" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8a3b2f" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#8a3b2f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="popMars" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8a3b2f" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#8a3b2f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="popBase" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#a8d1ea" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#a8d1ea" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="wmPop" width="230" height="100" patternTransform="rotate(-28)" patternUnits="userSpaceOnUse">
+      <text x="0" y="45" font-size="15" fill="#0b2d48" opacity="0.14" font-family="monospace">SAMPLE DATA — REPLACE</text>
+    </pattern>
+  </defs>
+  <rect width="600" height="400" fill="#eaf3fa"/>
+  <ellipse cx="300" cy="200" rx="280" ry="180" fill="url(#popBase)"/>
+  <ellipse cx="300" cy="120" rx="90" ry="80" fill="url(#popParis)"/>
+  <ellipse cx="375" cy="225" rx="55" ry="48" fill="url(#popLyon)"/>
+  <ellipse cx="385" cy="320" rx="50" ry="42" fill="url(#popMars)"/>
+  <rect width="600" height="400" fill="url(#wmPop)"/>
+  <text x="16" y="24" font-family="monospace" font-size="14" fill="#0b2d48" opacity="0.85">Population density — placeholder</text>
+</svg>

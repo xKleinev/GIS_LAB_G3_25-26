@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Mapping Air Quality in France | GIS Group 3</title>
+  <meta name="description" content="A GIS project mapping NO2, PM2.5 and PM10 air pollution across France (2021-2023) using Copernicus CAMS reanalysis, CORINE Land Cover and population data. GIS course, Politecnico di Milano, Group 3.">
+  <meta name="keywords" content="GIS, air quality, France, NO2, PM2.5, PM10, WebGIS, OpenLayers, Politecnico di Milano">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main + Custom CSS -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/custom.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Base template: OnePage by BootstrapMade.com (heavily customized)
+  * Project: Mapping Air Quality in France — GIS Group 3, A.A. 2025/26
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <i class="bi bi-cloud-haze2-fill" style="font-size: 1.6rem; color: var(--accent-color); margin-right:.5rem;"></i>
+        <span class="sitename">Mapping Air Quality</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="methods.html">Data &amp; Methods</a></li>
+          <li><a href="results.html">Results</a></li>
+          <li><a href="webgis.html">WebGIS</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="webgis.html">Open WebGIS</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero -->
+    <section id="hero" class="page-hero">
+      <div class="container position-relative">
+        <div class="row justify-content-center text-center" data-aos="fade-up">
+          <div class="col-xl-8">
+            <div class="eyebrow">GIS · A.A. 2025/26 · Politecnico di Milano · Group 3</div>
+            <h1>Mapping Air Quality in France</h1>
+            <p class="lead mx-auto">
+              A geospatial analysis of NO<sub>2</sub>, PM2.5 and PM10 concentrations across France between 2021 and 2023,
+              combining Copernicus atmospheric reanalysis, land cover and population data to understand where air
+              pollution is changing and who it affects.
+            </p>
+            <div class="badge-group mt-3 mb-4">
+              <span class="badge rounded-pill"><i class="bi bi-flag"></i> France</span>
+              <span class="badge rounded-pill"><i class="bi bi-calendar3"></i> 2021 – 2023</span>
+              <span class="badge rounded-pill">NO2 · PM2.5 · PM10</span>
+              <span class="badge rounded-pill"><i class="bi bi-people"></i> Group 3</span>
+            </div>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+              <a href="results.html" class="btn btn-light fw-semibold px-4 py-2">Explore the Results</a>
+              <a href="webgis.html" class="btn btn-outline-light fw-semibold px-4 py-2">Open the WebGIS <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Hero -->
+
+    <!-- Fact strip -->
+    <section class="section pt-5 pb-4">
+      <div class="container" data-aos="fade-up">
+        <div class="row gy-4 fact-strip py-2 mx-0">
+          <div class="col-md-3 col-6 fact-item">
+            <div class="num"><span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="1" class="purecounter"></span></div>
+            <div class="label">Pollutants mapped<br>(NO2 · PM2.5 · PM10)</div>
+          </div>
+          <div class="col-md-3 col-6 fact-item">
+            <div class="num">2021–23</div>
+            <div class="label">Annual mean change<br>period analysed</div>
+          </div>
+          <div class="col-md-3 col-6 fact-item">
+            <div class="num"><span data-purecounter-start="0" data-purecounter-end="25" data-purecounter-duration="1.5" class="purecounter"></span></div>
+            <div class="label">Geospatial outputs<br>produced in QGIS</div>
+          </div>
+          <div class="col-md-3 col-6 fact-item">
+            <div class="num"><span data-purecounter-start="0" data-purecounter-end="8" data-purecounter-duration="1.2" class="purecounter"></span></div>
+            <div class="label">Processing steps<br>Lab 1 → Lab 5</div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Fact strip -->
+
+    <!-- About -->
+    <section id="about" class="about section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About the Project</h2>
+        <p>Why air quality, why France, and what this website shows</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4 align-items-center">
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <p>
+              Air pollution remains one of the largest environmental health risks in Europe. This project uses
+              free and open geospatial data to reconstruct how nitrogen dioxide (NO<sub>2</sub>) and particulate
+              matter (PM2.5, PM10) concentrations evolved across <strong>France</strong> between 2021 and 2023,
+              and to relate those changes to land cover and population distribution.
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-circle"></i> <span>Monthly and annual pollutant surfaces derived from the Copernicus Atmosphere Monitoring Service (CAMS).</span></li>
+              <li><i class="bi bi-check2-circle"></i> <span>Annual Mean Aggregation Change (AMAC) mapped for each pollutant between 2021 and 2023.</span></li>
+              <li><i class="bi bi-check2-circle"></i> <span>Zonal statistics, bivariate pollution–population maps and an interactive WebGIS to explore every layer produced.</span></li>
+            </ul>
+            <div class="edit-note mt-3">
+              <i class="bi bi-pencil-square"></i>
+              <span><strong>Group 3 — </strong>replace this paragraph with your own framing: why you chose to
+              highlight particular regions of France, what motivated the analysis, and any hypotheses you tested.</span>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="row gy-4">
+              <div class="col-6">
+                <div class="pipeline-step">
+                  <div class="icon"><i class="bi bi-database"></i></div>
+                  <h4 class="title h6">Open Data</h4>
+                  <p class="description small mb-0">CAMS reanalysis, CORINE Land Cover, gridded population.</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="pipeline-step">
+                  <div class="icon"><i class="bi bi-diagram-3"></i></div>
+                  <h4 class="title h6">QGIS Processing</h4>
+                  <p class="description small mb-0">Raster algebra, zonal statistics, bivariate classification.</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="pipeline-step">
+                  <div class="icon"><i class="bi bi-bar-chart-line"></i></div>
+                  <h4 class="title h6">Results &amp; Charts</h4>
+                  <p class="description small mb-0">Tables, pie charts and bivariate legends of the findings.</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="pipeline-step">
+                  <div class="icon"><i class="bi bi-globe-americas"></i></div>
+                  <h4 class="title h6">WebGIS</h4>
+                  <p class="description small mb-0">OpenLayers map with every produced layer &amp; legend.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /About -->
+
+    <!-- Pipeline -->
+    <section id="pipeline" class="section light-background">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>From Raw Data to Web Map</h2>
+        <p>The eight processing steps behind this website — see the <a href="methods.html">Data &amp; Methods</a> page for full detail</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="pipeline-step">
+              <div class="step-index">STEP 1–2</div>
+              <div class="icon"><i class="bi bi-cloud-drizzle"></i></div>
+              <h3 class="h6">Monthly &amp; Annual Pollutant Maps</h3>
+              <p class="small mb-0">CAMS NO2 / PM2.5 / PM10 for Dec. 2023 and annual averages for 2023.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="150">
+            <div class="pipeline-step">
+              <div class="step-index">STEP 3</div>
+              <div class="icon"><i class="bi bi-layers"></i></div>
+              <h3 class="h6">Concentration Maps</h3>
+              <p class="small mb-0">Pollutant concentration surfaces for France, 2023.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="pipeline-step">
+              <div class="step-index">STEP 4</div>
+              <div class="icon"><i class="bi bi-arrow-left-right"></i></div>
+              <h3 class="h6">2021→2023 AMAC Change</h3>
+              <p class="small mb-0">Annual Mean Aggregation Change maps + QML styles, per pollutant.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="250">
+            <div class="pipeline-step">
+              <div class="step-index">STEP 5</div>
+              <div class="icon"><i class="bi bi-tree"></i></div>
+              <h3 class="h6">Land Cover Change</h3>
+              <p class="small mb-0">2021–2023 land cover change map + statistical table.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="pipeline-step">
+              <div class="step-index">STEP 6</div>
+              <div class="icon"><i class="bi bi-pie-chart"></i></div>
+              <h3 class="h6">Zonal Statistics</h3>
+              <p class="small mb-0">Mean / min / max per pollutant and region, visualised as charts.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="350">
+            <div class="pipeline-step">
+              <div class="step-index">STEP 7</div>
+              <div class="icon"><i class="bi bi-grid-3x3-gap"></i></div>
+              <h3 class="h6">Bivariate Mapping</h3>
+              <p class="small mb-0">Population class × pollutant class bivariate maps &amp; legend.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="pipeline-step">
+              <div class="step-index">STEP 8</div>
+              <div class="icon"><i class="bi bi-diagram-2"></i></div>
+              <h3 class="h6">Population Exposure</h3>
+              <p class="small mb-0">Dissolved zones (max 5) summarising population exposed per pollutant class.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="450">
+            <div class="pipeline-step">
+              <div class="step-index">WEBGIS</div>
+              <div class="icon"><i class="bi bi-map"></i></div>
+              <h3 class="h6">Interactive Map</h3>
+              <p class="small mb-0">All layers above, two basemaps, scale line, full screen, mouse position &amp; legend.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /Pipeline -->
+
+    <!-- Team -->
+    <section id="team" class="team section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Group 3 — France</h2>
+        <p>GIS course, A.A. 2025/26, Politecnico di Milano</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member text-center w-100">
+              <div class="member-avatar" style="background:var(--aq-no2);">S1</div>
+              <div class="member-info">
+                <h4>Student Name 1</h4>
+                <span>Role / focus area</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="150">
+            <div class="team-member text-center w-100">
+              <div class="member-avatar" style="background:var(--aq-pm25);">S2</div>
+              <div class="member-info">
+                <h4>Student Name 2</h4>
+                <span>Role / focus area</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-member text-center w-100">
+              <div class="member-avatar" style="background:var(--aq-pm10);">S3</div>
+              <div class="member-info">
+                <h4>Student Name 3</h4>
+                <span>Role / focus area</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="250">
+            <div class="team-member text-center w-100">
+              <div class="member-avatar" style="background:var(--aq-france-blue);">S4</div>
+              <div class="member-info">
+                <h4>Student Name 4</h4>
+                <span>Role / focus area</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="edit-note mt-4 mx-auto" style="max-width: 640px;">
+          <i class="bi bi-pencil-square"></i>
+          <span>Replace the placeholder names/initials above with the real Group 3 members and, if you like, add photos in <code>assets/img/team/</code>.</span>
+        </div>
+      </div>
+    </section><!-- /Team -->
+
+    <!-- CTA -->
+    <section id="call-to-action" class="call-to-action section accent-background">
+      <div class="container">
+        <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-10 text-center">
+            <h3>See every layer we produced</h3>
+            <p>The WebGIS brings together the pollutant, land cover, population and bivariate layers from Labs 2–4 in one interactive map, with two basemaps, full navigation controls and a legend.</p>
+            <a class="cta-btn" href="webgis.html">Open the WebGIS</a>
+          </div>
+        </div>
+      </div>
+    </section><!-- /CTA -->
+
+  </main>
+
+  <footer id="footer" class="footer light-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <i class="bi bi-cloud-haze2-fill" style="font-size: 1.4rem; color: var(--accent-color); margin-right:.5rem;"></i>
+            <span class="sitename">Mapping Air Quality — France</span>
+          </a>
+          <p>A GIS course project (A.A. 2025/26, Politecnico di Milano) by Group 3, analysing NO2, PM2.5 and PM10
+          air pollution across France with Copernicus CAMS, CORINE Land Cover and population data.</p>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Website</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="methods.html">Data &amp; Methods</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="webgis.html">WebGIS</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Data Sources</h4>
+          <ul>
+            <li><a href="https://ads.atmosphere.copernicus.eu/" target="_blank" rel="noopener">Copernicus CAMS</a></li>
+            <li><a href="https://land.copernicus.eu/en/products/corine-land-cover" target="_blank" rel="noopener">CORINE Land Cover</a></li>
+            <li><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Course</h4>
+          <p>Geographic Information Systems</p>
+          <p>A.A. 2025/26 — Politecnico di Milano</p>
+          <p>Dept. of Civil and Environmental Engineering</p>
+          <p class="mt-2"><strong>Group:</strong> <span>3 — France</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>2026</span> <strong class="px-1 sitename">Mapping Air Quality — Group 3</strong></p>
+      <div class="credits">
+        Built on the <a href="https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/">OnePage</a> template by <a href="https://bootstrapmade.com/">BootstrapMade</a>, customized for this project.
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
