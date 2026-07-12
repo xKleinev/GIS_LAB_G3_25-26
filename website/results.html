@@ -47,66 +47,231 @@
         <div class="eyebrow">Findings</div>
         <h1>Results</h1>
         <p class="lead">Tables, charts and maps summarising land cover change, pollutant statistics, bivariate
-          population–pollution patterns and exposure across France, 2021–2023.</p>
+          population-pollution patterns and exposure across France, 2021-2023.</p>
       </div>
     </section>
-
+<!-- 
     <div class="container">
-      <div class="edit-note my-4" data-aos="fade-up">
-        <i class="bi bi-pencil-square"></i>
-        <span><strong>Group 3 — </strong>every table and chart below is pre-wired with <em>sample</em> numbers so the
-        page works end-to-end. Replace the arrays in <code>assets/js/results-charts.js</code> and the table rows
-        in this file with the real values from your <code>.gpkg</code> zonal statistics, and drop your exported
-        map screenshots into <code>assets/img/results/</code> to replace the dashed placeholders.</span>
-      </div>
-    </div>
+      <p>test</p>
+    </div> -->
 
-    <!-- Step 5: Land cover change -->
-    <section class="section pt-2">
-      <div class="container section-title text-start" data-aos="fade-up">
-        <h2>Land Cover Change, 2021–2023</h2>
-        <p>Step 5 — transition matrix (km²) between CORINE Land Cover classes</p>
-      </div>
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
-            <div class="data-table-wrap">
-              <table class="aq-table">
+<!-- Step 5: Transition Metrics & Statistical Breakdown -->
+<section class="section">
+  <div class="container section-title text-start" data-aos="fade-up">
+    <h2>Transition Metrics &amp; Statistical Breakdown (2021-2023)</h2>
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <!-- Tab Controls (Pollutant Focus Groups) -->
+    <ul class="nav pollutant-tabs mb-4" id="lccTabs" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#lcc-no2" type="button">NO2 (Built Area)</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#lcc-pm25" type="button">PM2.5 (Crops)</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#lcc-pm10" type="button">PM10 (Trees)</button>
+      </li>
+    </ul>
+
+    <!-- Tab Target Panes -->
+    <div class="tab-content">
+      
+      <!-- ==================== NO2 ==================== -->
+      <div class="tab-pane fade show active" id="lcc-no2">
+        <div class="row align-items-stretch gy-4">
+          <!-- LEFT SIDE: Raw Table Elements Matrix Tracking -->
+          <div class="col-lg-7">
+            <div class="data-table-wrap shadow-sm rounded border bg-white p-3" style="max-height: 480px; overflow-y: auto;">
+              <h4 class="h6 text-primary mb-3"><i class="bi bi-file-earmark-code"></i>Built Area (Code 7)</h4>
+              <table class="aq-table mb-0" style="width: 100%; font-size: 0.76rem; white-space: nowrap;">
                 <thead>
-                  <tr>
-                    <th>2021 \ 2023</th>
-                    <th>Artificial</th>
-                    <th>Agricultural</th>
-                    <th>Forest &amp; semi-natural</th>
-                    <th>Water</th>
+                  <tr style="position: sticky; top: 0; background: #fff; z-index: 2;">
+                    <th>Value</th><th>Pixel Count</th><th>Area</th><th>Used To</th>
+                    <th>Pixel Count - Stability</th><th>Pixel Count - Gain</th><th>Pixel Count - Loss</th>
+                    <th>Area - Stability</th><th>Area - Gain</th><th>Area - Loss</th>
+                    <th>Pixel Count - SourceGain%</th><th>Area - SourceGain%</th><th>Pixel Count - DestLoss%</th><th>Area - DestLoss%</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td><strong>Artificial</strong></td><td>21,430</td><td>140</td><td>65</td><td>5</td></tr>
-                  <tr><td><strong>Agricultural</strong></td><td>510</td><td>274,820</td><td>980</td><td>12</td></tr>
-                  <tr><td><strong>Forest &amp; semi-natural</strong></td><td>95</td><td>430</td><td>168,240</td><td>8</td></tr>
-                  <tr><td><strong>Water</strong></td><td>3</td><td>6</td><td>4</td><td>16,120</td></tr>
+                  <tr class="text-muted"><td>107</td><td>610,371</td><td>0.006335</td><td>Ignore (cloud)</td><td>0</td><td>0</td><td>0</td><td>0.000000</td><td>0.000000</td><td>0.000000</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>207</td><td>8,387,313</td><td>0.087049</td><td>Source of Gain</td><td>0</td><td>8387313</td><td>0</td><td>0.000000</td><td>0.087049</td><td>0.000000</td><td>21.31%</td><td>21.31%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>407</td><td>68,212</td><td>0.000708</td><td>Source of Gain</td><td>0</td><td>68212</td><td>0</td><td>0.000000</td><td>0.000708</td><td>0.000000</td><td>0.17%</td><td>0.000708</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>507</td><td>23,598,387</td><td>0.244921</td><td>Source of Gain</td><td>0</td><td>23598387</td><td>0</td><td>0.000000</td><td>0.244921</td><td>0.000000</td><td>59.95%</td><td>59.95%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>701</td><td>323,928</td><td>0.003362</td><td>Destination Loss</td><td>0</td><td>0</td><td>323928</td><td>0.000000</td><td>0.000000</td><td>0.003362</td><td>0.00%</td><td>0.00%</td><td>1.33%</td><td>1.33%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>702</td><td>4,759,521</td><td>0.049398</td><td>Destination Loss</td><td>0</td><td>0</td><td>4759521</td><td>0.000000</td><td>0.000000</td><td>0.049398</td><td>0.00%</td><td>0.00%</td><td>19.51%</td><td>19.51%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>704</td><td>25,324</td><td>0.000263</td><td>Destination Loss</td><td>0</td><td>0</td><td>25324</td><td>0.000000</td><td>0.000000</td><td>0.000263</td><td>0.00%</td><td>0.00%</td><td>0.10%</td><td>0.10%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>705</td><td>15,307,909</td><td>0.158876</td><td>Destination Loss</td><td>0</td><td>0</td><td>15307909</td><td>0.000000</td><td>0.000000</td><td>0.158876</td><td>0.00%</td><td>0.00%</td><td>62.75%</td><td>62.75%</td></tr>
+                  <tr style="background-color: rgba(52, 152, 219, 0.08); font-weight: bold;"><td>707</td><td>482,445,433</td><td>5.007158</td><td>Stability Rate</td><td>482445433</td><td>0</td><td>0</td><td>5.007158</td><td>0.000000</td><td>0.000000</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>708</td><td>443,442</td><td>0.004602</td><td>Destination Loss</td><td>0</td><td>0</td><td>443442</td><td>0.000000</td><td>0.000000</td><td>0.004602</td><td>0.00%</td><td>0.00%</td><td>1.82%</td><td>1.82%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>709</td><td>6,365</td><td>0.000066</td><td>Destination Loss</td><td>0</td><td>0</td><td>6365</td><td>0.000000</td><td>0.000000</td><td>0.000066</td><td>0.00%</td><td>0.00%</td><td>0.03%</td><td>0.03%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>711</td><td>3,528,414</td><td>0.036620</td><td>Destination Loss</td><td>0</td><td>0</td><td>3528414</td><td>0.000000</td><td>0.000000</td><td>0.036620</td><td>0.00%</td><td>0.00%</td><td>14.46%</td><td>14.46%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>807</td><td>1,908,708</td><td>0.019810</td><td>Source of Gain</td><td>0</td><td>1908708</td><td>0</td><td>0.000000</td><td>0.019810</td><td>0.000000</td><td>4.85%</td><td>4.85%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>907</td><td>38,537</td><td>0.000400</td><td>Source of Gain</td><td>0</td><td>38537</td><td>0</td><td>0.000000</td><td>0.000400</td><td>0.000000</td><td>0.10%</td><td>0.10%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>1107</td><td>5,361,593</td><td>0.055646</td><td>Source of Gain</td><td>0</td><td>5361593</td><td>0</td><td>0.000000</td><td>0.055646</td><td>0.000000</td><td>13.62%</td><td>13.62%</td><td>0.00%</td><td>0.00%</td></tr>
                 </tbody>
               </table>
             </div>
-            <p class="small text-muted mt-2 mb-0">Sample data — replace with the real transition matrix computed from <code>FRANCE_LCC_2021_2023.tif</code>.</p>
           </div>
-          <div class="col-lg-5" data-aos="fade-up" data-aos-delay="150">
-            <div class="figure-placeholder" style="min-height: 220px;">
-              <i class="bi bi-image"></i>
-              <p class="mb-1">Land cover change map</p>
-              <span class="filename">assets/img/results/lcc_2021_2023.png</span>
+          <!-- RIGHT SIDE: Processed Summary Statistics -->
+          <div class="col-lg-5">
+            <div class="data-table-wrap shadow-sm rounded border bg-white p-3 h-100">
+              <h4 class="h6 text-primary mb-3"><i class="bi bi-table"></i> NO2 Parameters</h4>
+              <table class="aq-table mb-0" style="width: 100%; font-size: 0.82rem;">
+                <thead>
+                  <tr><th>Indicator</th><th>Value (%)</th><th>Category Mapping</th></tr>
+                </thead>
+                <tbody>
+                  <tr style="background-color: rgba(27, 108, 168, 0.08); font-weight: 600;">
+                    <td>Stability (Persistence)</td><td>95.19%</td><td>N/A (Baseline)</td>
+                  </tr>
+                  <tr><td>Primary Source of Gain</td><td>59.95%</td><td>Crops (Code 5)</td></tr>
+                  <tr><td>Secondary Source of Gain</td><td>21.31%</td><td>Trees (Code 2)</td></tr>
+                  <tr><td>Tertiary Source of Gain</td><td>13.62%</td><td>Rangeland (Code 11)</td></tr>
+                  <tr><td>Primary Destination of Loss</td><td>62.75%</td><td>Crops (Code 5)</td></tr>
+                  <tr><td>Secondary Destination of Loss</td><td>19.51%</td><td>Trees (Code 2)</td></tr>
+                  <tr><td>Tertiary Destination of Loss</td><td>14.46%</td><td>Rangeland (Code 11)</td></tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
-    </section>
+
+      <!-- ==================== PM2.5 ==================== -->
+      <div class="tab-pane fade" id="lcc-pm25">
+        <div class="row align-items-stretch gy-4">
+          <!-- LEFT SIDE: Raw Table Elements Matrix Tracking -->
+          <div class="col-lg-7">
+            <div class="data-table-wrap shadow-sm rounded border bg-white p-3" style="max-height: 480px; overflow-y: auto;">
+              <h4 class="h6 text-success mb-3"><i class="bi bi-file-earmark-code"></i>Crops (Class 5)</h4>
+              <table class="aq-table mb-0" style="width: 100%; font-size: 0.76rem; white-space: nowrap;">
+                <thead>
+                  <tr style="position: sticky; top: 0; background: #fff; z-index: 2;">
+                    <th>Value</th><th>Pixel Count</th><th>Area</th><th>Used To</th>
+                    <th>Pixel Count - Stability</th><th>Pixel Count - Gain</th><th>Pixel Count - Loss</th>
+                    <th>Area - Stability</th><th>Area - Gain</th><th>Area - Loss</th>
+                    <th>Pixel Count - SourceGain%</th><th>Area - SourceGain%</th><th>Pixel Count - DestLoss%</th><th>Area - DestLoss%</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="text-muted"><td>105</td><td>12,482</td><td>0.012482</td><td>Ignored (Cloud)</td><td>0</td><td>0</td><td>0</td><td>0.000000</td><td>0.000000</td><td>0.000000</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>205</td><td>127,527</td><td>0.127527</td><td>Source of Gain</td><td>0</td><td>127527</td><td>0</td><td>0.000000</td><td>0.127527</td><td>0.000000</td><td>21.05%</td><td>21.05%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>405</td><td>3,402</td><td>0.003402</td><td>Source of Gain</td><td>0</td><td>3402</td><td>0</td><td>0.000000</td><td>0.003402</td><td>0.000000</td><td>0.56%</td><td>0.56%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>501</td><td>5,724</td><td>0.005724</td><td>Destination Loss</td><td>0</td><td>0</td><td>5724</td><td>0.000000</td><td>0.000000</td><td>0.005724</td><td>0.00%</td><td>0.00%</td><td>0.50%</td><td>0.50%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>502</td><td>281,515</td><td>0.281515</td><td>Destination Loss</td><td>0</td><td>0</td><td>281515</td><td>0.000000</td><td>0.000000</td><td>0.281515</td><td>0.00%</td><td>0.00%</td><td>24.70%</td><td>24.70%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>504</td><td>2,904</td><td>0.002904</td><td>Destination Loss</td><td>0</td><td>0</td><td>2904</td><td>0.000000</td><td>0.000000</td><td>0.002904</td><td>0.00%</td><td>0.00%</td><td>0.25%</td><td>0.25%</td></tr>
+                  <tr style="background-color: rgba(52, 152, 219, 0.08); font-weight: bold;"><td>505</td><td>30,375,639</td><td>30.375639</td><td>Stability Rate</td><td>30375639</td><td>0</td><td>0</td><td>30.375639</td><td>0.000000</td><td>0.000000</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>507</td><td>63,563</td><td>0.063563</td><td>Destination Loss</td><td>0</td><td>0</td><td>63563</td><td>0.000000</td><td>0.000000</td><td>0.063563</td><td>0.00%</td><td>0.00%</td><td>5.58%</td><td>5.58%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>508</td><td>61</td><td>0.000061</td><td>Destination Loss</td><td>0</td><td>0</td><td>61</td><td>0.000000</td><td>0.000000</td><td>0.000061</td><td>0.00%</td><td>0.00%</td><td>0.01%</td><td>0.01%</td></tr>
+                  <tr class="text-muted"><td>510</td><td>26</td><td>0.000026</td><td>Ignored (Cloud)</td><td>0</td><td>0</td><td>0</td><td>0.000000</td><td>0.000000</td><td>0.000000</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>511</td><td>786,060</td><td>0.786060</td><td>Destination Loss</td><td>0</td><td>0</td><td>786060</td><td>0.000000</td><td>0.000000</td><td>0.786060</td><td>0.00%</td><td>0.00%</td><td>68.96%</td><td>68.96%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>705</td><td>23,238</td><td>0.023238</td><td>Source of Gain</td><td>0</td><td>23238</td><td>0</td><td>0.000000</td><td>0.023238</td><td>0.000000</td><td>3.84%</td><td>3.84%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>805</td><td>463</td><td>0.000463</td><td>Source of Gain</td><td>0</td><td>463</td><td>0</td><td>0.000000</td><td>0.000463</td><td>0.000000</td><td>0.08%</td><td>0.08%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>905</td><td>10</td><td>0.000010</td><td>Source of Gain</td><td>0</td><td>10</td><td>0</td><td>0.000000</td><td>0.000010</td><td>0.000000</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr class="text-muted"><td>1005</td><td>9</td><td>0.000009</td><td>Ignored (Cloud)</td><td>0</td><td>0</td><td>0</td><td>0.000000</td><td>0.000000</td><td>0.000000</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>1105</td><td>451,196</td><td>0.451196</td><td>Source of Gain</td><td>0</td><td>451196</td><td>0</td><td>0.000000</td><td>0.451196</td><td>0.000000</td><td>74.47%</td><td>74.47%</td><td>0.00%</td><td>0.00%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- RIGHT SIDE: Processed Summary Statistics -->
+          <div class="col-lg-5">
+            <div class="data-table-wrap shadow-sm rounded border bg-white p-3 h-100">
+              <h4 class="h6 text-success mb-3"><i class="bi bi-table"></i> PM2.5 Parameters</h4>
+              <table class="aq-table mb-0" style="width: 100%; font-size: 0.82rem;">
+                <thead>
+                  <tr><th>Indicator</th><th>Value (%)</th><th>Category Mapping</th></tr>
+                </thead>
+                <tbody>
+                  <tr style="background-color: rgba(46, 204, 113, 0.08); font-weight: 600;">
+                    <td>Stability (Persistence)</td><td>96.38%</td><td>N/A (Baseline)</td>
+                  </tr>
+                  <tr><td>Primary Source of Gain</td><td>74.47%</td><td>Rangeland (Code 11)</td></tr>
+                  <tr><td>Secondary Source of Gain</td><td>21.05%</td><td>Trees (Code 2)</td></tr>
+                  <tr><td>Tertiary Source of Gain</td><td>3.84%</td><td>Built Area (Code 7)</td></tr>
+                  <tr><td>Primary Destination of Loss</td><td>68.96%</td><td>Rangeland (Code 11)</td></tr>
+                  <tr><td>Secondary Destination of Loss</td><td>24.70%</td><td>Trees (Code 2)</td></tr>
+                  <tr><td>Tertiary Destination of Loss</td><td>5.58%</td><td>Built Area (Code 7)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PM10 ==================== -->
+      <div class="tab-pane fade" id="lcc-pm10">
+        <div class="row align-items-stretch gy-4">
+          <!-- LEFT SIDE: Raw Table Elements Matrix Tracking -->
+          <div class="col-lg-7">
+            <div class="data-table-wrap shadow-sm rounded border bg-white p-3" style="max-height: 480px; overflow-y: auto;">
+              <h4 class="h6 text-warning mb-3"><i class="bi bi-file-earmark-code"></i>Trees (Class 2)</h4>
+              <table class="aq-table mb-0" style="width: 100%; font-size: 0.76rem; white-space: nowrap;">
+                <thead>
+                  <tr style="position: sticky; top: 0; background: #fff; z-index: 2;">
+                    <th>Value</th><th>Pixel Count</th><th>Area</th><th>Used To</th>
+                    <th>Pixel Count - Stability</th><th>Pixel Count - Gain</th><th>Pixel Count - Loss</th>
+                    <th>Area - Stability</th><th>Area - Gain</th><th>Area - Loss</th>
+                    <th>Pixel Count - SourceGain%</th><th>Area - SourceGain%</th><th>Pixel Count - DestLoss%</th><th>Area - DestLoss%</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="text-muted"><td>102</td><td>2,428,869</td><td>0.025208</td><td>Ignored (Cloud)</td><td>0</td><td>0</td><td>0</td><td>0.000000</td><td>0.000000</td><td>0.000000</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>201</td><td>1,274,361</td><td>0.013226</td><td>Destination Loss</td><td>0</td><td>0</td><td>1274361</td><td>0.000000</td><td>0.000000</td><td>0.013226</td><td>0.00%</td><td>0.00%</td><td>1.28%</td><td>1.28%</td></tr>
+                  <tr style="background-color: rgba(52, 152, 219, 0.08); font-weight: bold;"><td>202</td><td>1,801,921,054</td><td>18.701593</td><td>Stability Rate</td><td>1801921054</td><td>0</td><td>0</td><td>18.701593</td><td>0.000000</td><td>0.000000</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>204</td><td>252,068</td><td>0.002616</td><td>Destination Loss</td><td>0</td><td>0</td><td>252068</td><td>0.000000</td><td>0.000000</td><td>0.002616</td><td>0.00%</td><td>0.00%</td><td>0.25%</td><td>0.25%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>205</td><td>33,636,233</td><td>0.349100</td><td>Destination Loss</td><td>0</td><td>0</td><td>33636233</td><td>0.000000</td><td>0.000000</td><td>0.349100</td><td>0.00%</td><td>0.00%</td><td>33.70%</td><td>33.70%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>207</td><td>9,364,258</td><td>0.097189</td><td>Destination Loss</td><td>0</td><td>0</td><td>9364258</td><td>0.000000</td><td>0.000000</td><td>0.097189</td><td>0.00%</td><td>0.00%</td><td>9.38%</td><td>9.38%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>208</td><td>77,807</td><td>0.000808</td><td>Destination Loss</td><td>0</td><td>0</td><td>77807</td><td>0.000000</td><td>0.000000</td><td>0.000808</td><td>0.00%</td><td>0.00%</td><td>0.08%</td><td>0.08%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>209</td><td>37,081</td><td>0.000385</td><td>Destination Loss</td><td>0</td><td>0</td><td>37081</td><td>0.000000</td><td>0.000000</td><td>0.000385</td><td>0.00%</td><td>0.00%</td><td>0.04%</td><td>0.04%</td></tr>
+                  <tr class="text-muted"><td>210</td><td>3,472</td><td>0.000036</td><td>Ignored (Cloud)</td><td>0</td><td>0</td><td>0</td><td>0.000000</td><td>0.000000</td><td>0.000000</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(231, 76, 60, 0.04);"><td>211</td><td>55,176,604</td><td>0.572661</td><td>Destination Loss</td><td>0</td><td>0</td><td>55176604</td><td>0.000000</td><td>0.000000</td><td>0.572661</td><td>0.00%</td><td>0.00%</td><td>55.28%</td><td>55.28%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>402</td><td>251,363</td><td>0.002609</td><td>Source of Gain</td><td>0</td><td>251363</td><td>0</td><td>0.000000</td><td>0.002609</td><td>0.000000</td><td>0.21%</td><td>0.21%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>502</td><td>62,586,061</td><td>0.649562</td><td>Source of Gain</td><td>0</td><td>62586061</td><td>0</td><td>0.000000</td><td>0.649562</td><td>0.000000</td><td>52.12%</td><td>52.12%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>702</td><td>5,736,312</td><td>0.059535</td><td>Source of Gain</td><td>0</td><td>5736312</td><td>0</td><td>0.000000</td><td>0.059535</td><td>0.000000</td><td>4.78%</td><td>4.78%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>802</td><td>218,459</td><td>0.002267</td><td>Source of Gain</td><td>0</td><td>218459</td><td>0</td><td>0.000000</td><td>0.002267</td><td>0.000000</td><td>0.18%</td><td>0.18%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>902</td><td>79,699</td><td>0.000827</td><td>Source of Gain</td><td>0</td><td>79699</td><td>0</td><td>0.000000</td><td>0.000827</td><td>0.000000</td><td>0.07%</td><td>0.07%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr class="text-muted"><td>1002</td><td>2,934</td><td>0.000030</td><td>Ignored (Cloud)</td><td>0</td><td>0</td><td>0</td><td>0.000000</td><td>0.000000</td><td>0.000000</td><td>0.00%</td><td>0.00%</td><td>0.00%</td><td>0.00%</td></tr>
+                  <tr style="background-color: rgba(46, 204, 113, 0.04);"><td>1102</td><td>51,220,436</td><td>0.531601</td><td>Source of Gain</td><td>0</td><td>51220436</td><td>0</td><td>0.000000</td><td>0.531601</td><td>0.000000</td><td>42.65%</td><td>42.65%</td><td>0.00%</td><td>0.00%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- RIGHT SIDE: Processed Summary Statistics -->
+          <div class="col-lg-5">
+            <div class="data-table-wrap shadow-sm rounded border bg-white p-3 h-100">
+              <h4 class="h6 text-warning mb-3"><i class="bi bi-table"></i> PM10 Parameters</h4>
+              <table class="aq-table mb-0" style="width: 100%; font-size: 0.82rem;">
+                <thead>
+                  <tr><th>Indicator</th><th>Value (%)</th><th>Category Mapping</th></tr>
+                </thead>
+                <tbody>
+                  <tr style="background-color: rgba(241, 196, 15, 0.08); font-weight: 600;">
+                    <td>Stability (Persistence)</td><td>94.75%</td><td>N/A (Baseline)</td>
+                  </tr>
+                  <tr><td>Primary Source of Gain</td><td>52.12%</td><td>Crops (Code 5)</td></tr>
+                  <tr><td>Secondary Source of Gain</td><td>42.65%</td><td>Rangeland (Code 11)</td></tr>
+                  <tr><td>Tertiary Source of Gain</td><td>4.78%</td><td>Built Area (Code 7)</td></tr>
+                  <tr><td>Primary Destination of Loss</td><td>55.28%</td><td>Rangeland (Code 11)</td></tr>
+                  <tr><td>Secondary Destination of Loss</td><td>33.70%</td><td>Crops (Code 5)</td></tr>
+                  <tr><td>Tertiary Destination of Loss</td><td>9.38%</td><td>Built Area (Code 7)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- /tab-content -->
+  </div>
+</section>
 
     <!-- Step 6: Zonal statistics -->
     <section class="section light-background">
       <div class="container section-title text-start" data-aos="fade-up">
         <h2>Pollutant Zonal Statistics</h2>
-        <p>Step 6 — mean / min / max concentration per region, 2021–2023</p>
       </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -120,6 +285,7 @@
           <div class="tab-pane fade show active" id="zonal-no2">
             <div class="row gy-4">
               <div class="col-lg-6">
+                <p> tesa</p>
                 <div class="data-table-wrap">
                   <table class="aq-table">
                     <thead><tr><th>Crop Transition Class</th><th>Mean Change</th><th>Min Change</th><th>Max Change</th></tr></thead>
@@ -184,6 +350,9 @@
         <div class="tab-pane fade" id="zonal-pm10">
           <div class="row gy-4">
             <div class="col-lg-6">
+              <p class="small" style="line-height: 1.6; color: #495057;">
+  The zonal statistics reveal a consistent pattern linking tree cover persistence to greater PM<sub>10</sub> reduction. Stable zones—areas where tree cover was maintained throughout the period—experienced the largest mean decrease in PM<sub>10</sub> concentration (-1.0476 &micro;g/m&sup3;). Gain zones, where new tree cover appeared by 2023, showed a slightly smaller reduction (-0.9856 &micro;g/m&sup3;). Loss zones, where trees present in 2021 were converted to other land cover classes by 2023, recorded the weakest improvement (-0.9227 &micro;g/m&sup3;). While all three zones show an overall decline in PM<sub>10</sub> consistent with the nationwide downward trend identified in the AMAC analysis, the gradient across zones suggests that tree cover contributes to particulate matter removal through canopy interception and dry deposition. The minimum value is identical across all three zones (-4.3773 &micro;g/m&sup3;), reflecting the global extent of the AMAC raster. The maximum value for Loss (0.7946 &micro;g/m&sup3;) is notably lower than for Stable and Gain (1.1967 &micro;g/m&sup3;), indicating that the areas where PM<sub>10</sub> increased the most did not coincide with zones of tree loss.
+</p>
               <div class="data-table-wrap">
                 <table class="aq-table">
                   <thead><tr><th>Crop Transition Class</th><th>Mean Change</th><th>Min Change</th><th>Max Change</th></tr></thead>
@@ -220,8 +389,8 @@
     <!-- Step 7: Bivariate mapping -->
     <section class="section">
       <div class="container section-title text-start" data-aos="fade-up">
-        <h2>Bivariate Mapping — Population × Pollution</h2>
-        <p>Step 7 — combining <code>pop_class_median</code> and <code>pol_class_max</code> per zone</p>
+        <h2>Bivariate Mapping — Population X Pollution</h2>
+        <!-- <p>Step 7 — combining <code>pop_class_median</code> and <code>pol_class_max</code> per zone</p> -->
       </div>
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <ul class="nav pollutant-tabs mb-4" id="bivariateTabs">
@@ -242,12 +411,12 @@
                 <div class="bivariate-legend-wrap">
                   <div class="bivariate-axis-y">Population →</div>
                   <div>
+                <p class="small text-muted mt-3 mb-0">The layer classifies the 96 French departments based on two variables: median population density class (<code>pop_class_median</code>) and maximum NO<sub>2</sub> concentration class (<code>pol_class_max</code>). Regarding NO<sub>2</sub> pollution, the vast majority of departments fall into the low concentration categories, while elevated levels are visibly concentrated in major urbanized and industrialized regions. Departments showing higher bivariate class values include the <strong>&Icirc;le-de-France</strong> region (Paris and its immediate surrounding departments), the <strong>Rh&ocirc;ne</strong> valley (around Lyon), parts of the Mediterranean coast (e.g., Bouches-du-Rh&ocirc;ne), and northern sectors (Nord). The most frequent bivariate class remains 11 (low population, low NO<sub>2</sub>), represented by the extensive white areas covering most of the map, indicating that the majority of France maintains both low population density and low nitrogen dioxide pollution levels. The highest intensity bivariate class (25: big population + very high NO<sub>2</sub>) is distinctly concentrated in the dense urban core of the &Icirc;le-de-France region (Paris, Hauts-de-Seine, Seine-Saint-Denis, and Val-de-Marne).</p>
+<br>
                     <div class="bivariate-legend" id="bivariateLegendNo2"></div>
                     <div class="bivariate-axis-x">NO2 concentration →</div>
                   </div>
                 </div>
-                <p class="small text-muted mt-3 mb-0">Dark cells indicate zones with both high population and high
-                NO2 — the priority areas for mitigation.</p>
               </div>
             </div>
           </div>
@@ -280,7 +449,11 @@
                 <div class="bivariate-legend-wrap">
                   <div class="bivariate-axis-y">Population →</div>
                   <div>
-                    <div class="bivariate-legend" id="bivariateLegendPm10"></div>
+                    <p class="small text-muted mt-3 mb-0">The layer classifies 96 French departments based on two variables: median population density class (pop_class_median) and maximum PM10 concentration class (pol_class_max).
+Regarding PM10 pollution, 76 departments (79.2%) fall into the low concentration category (class 1), while 20 departments (20.8%) exhibit high concentration levels (class 2). Departments with elevated PM10 are concentrated in Île-de-France (Paris, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne), Mediterranean coastal areas (Bouches-du-Rhône, Alpes-Maritimes, Var, Corse-du-Sud), and northern industrial zones (Nord, Pas-de-Calais).
+The most frequent bivariate class is 11 (low population, low PM10) with 70 departments, indicating that the majority of France has both low population density and low particulate matter pollution. Only 4 departments are classified as 25 (very high population + high PM10): Paris, Hauts-de-Seine, Seine-Saint-Denis, and Val-de-Marne, the urban core of the Île-de-France region.</p>
+<br>                    
+<div class="bivariate-legend" id="bivariateLegendPm10"></div>
                     <div class="bivariate-axis-x">PM10 concentration →</div>
                   </div>
                 </div>
@@ -291,44 +464,125 @@
       </div>
     </section><!-- /Bivariate -->
 
-    <!-- Step 8: Population exposure pie charts -->
+<!-- Step 8: Population exposure pie charts with click-toggle swap -->
     <section class="section light-background">
       <div class="container section-title text-start" data-aos="fade-up">
-        <h2>Population Exposure</h2>
-        <p>Step 8 — population (<code>pop_sum</code>) by dissolved pollutant class (<code>pol_class_max</code>)</p>
+        <h2>Population Exposure Analysis</h2>
+        <p>Proportional distribution of national population counts (<code>pop_sum</code>) grouped by regional maximum concentration thresholds (<code>pol_class_max</code>)</p>
       </div>
+      
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
-          <div class="col-lg-4">
-            <div class="chart-card">
-              <h3>NO2 exposure</h3>
-              <p class="chart-sub">Sample data — share of population per class</p>
-              <canvas id="chart-pie-no2"></canvas>
+          
+          <!-- CARD 1: NO2 EXPOSURE -->
+          <div class="col-lg-4 col-md-6">
+            <div class="exposure-card" onclick="toggleExposureCard(this)">
+              <span class="card-action-hint"><i class="bi bi-arrow-repeat"></i></span>
+              
+              <!-- Front Side -->
+              <div class="card-face-front">
+                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; color: #0b457e;">NO2 Exposure Profile</h3>
+                <p class="chart-sub mb-3" style="font-size: 0.82rem; color: #6c757d;">Calculated distribution from FRANCE_no2_2023_chart.gpkg</p>
+                <div style="width: 100%; height: 280px; margin-top: auto; display: flex; align-items: center; justify-content: center;">
+                  <canvas id="chart-pie-no2"></canvas>
+                </div>
+              </div>
+              
+              <!-- Back Side -->
+              <div class="card-face-back" style="border-top: 4px solid #1b6ca8; padding-top: 1rem;">
+                <h5 class="text-primary h6 mb-3" style="font-weight: 600;"><i class="bi bi-info-circle"></i> NO<sub>2</sub> Exposure Analysis</h5>
+                <p class="small" style="line-height: 1.6; color: #495057;">
+                  Total population exposure was computed by dissolving the bivariate layer by pollution class (<code>pol_class_max</code>) and running Zonal Statistics against the raw WorldPop population count raster (sum statistic). Results show that <strong>39.7%</strong> of France's population lives in areas classified as NO<sub>2</sub> concentration level 1 (&le; 10 &micro;g/m&sup3;), while the majority, <strong>60.3%</strong>, is exposed to level 2 concentrations (&gt;10 and &le; 20 &micro;g/m&sup3;). Because NO<sub>2</sub> pollution levels correspond tightly with urban intensity, the most densely populated administrative zones of the country—notably the urban core of the <strong>&Icirc;le-de-France</strong> region—fall entirely into the higher concentration category, resulting in a disproportionately high share of the national population being exposed to elevated nitrogen dioxide levels relative to the geographic area these zones represent.
+                  This severe visual skew is highly correlated with the localized expansion of major impervious transport corridors and artificial dense urban layouts evaluated in our step 5 criteria models.
+                </p>
+                <div class="mt-auto pt-2 border-top text-muted small"><i class="bi bi-cursor"></i> Click card to view pie chart</div>
+              </div>
+              
             </div>
           </div>
-          <div class="col-lg-4">
-            <div class="chart-card">
-              <h3>PM2.5 exposure</h3>
-              <p class="chart-sub">Sample data — share of population per class</p>
-              <canvas id="chart-pie-pm25"></canvas>
+
+          <!-- CARD 2: PM2.5 EXPOSURE -->
+          <div class="col-lg-4 col-md-6">
+            <div class="exposure-card" onclick="toggleExposureCard(this)">
+              <span class="card-action-hint"><i class="bi bi-arrow-repeat"></i></span>
+              
+              <!-- Front Side -->
+              <div class="card-face-front">
+                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; color: #0b457e;">PM2.5 Exposure Profile</h3>
+                <p class="chart-sub mb-3" style="font-size: 0.82rem; color: #6c757d;">Calculated distribution from FRANCE_pm2p5_2023_chart.gpkg</p>
+                <div style="width: 100%; height: 280px; margin-top: auto; display: flex; align-items: center; justify-content: center;">
+                  <canvas id="chart-pie-pm25"></canvas>
+                </div>
+              </div>
+              
+              <!-- Back Side -->
+              <div class="card-face-back" style="border-top: 4px solid #2ecc71; padding-top: 1rem;">
+                <h5 class="text-success h6 mb-3" style="font-weight: 600;"><i class="bi bi-info-circle"></i> PM<sub>2.5</sub> Exposure Analysis</h5>
+                <p class="small" style="line-height: 1.6; color: #495057;">
+                  Fine particulate tracking indicates widespread medium-to-high threshold exposure levels across traditional agricultural crop corridors.
+                </p>
+                <p class="small" style="line-height: 1.6; color: #495057;">
+                  Because these micro-aerosols easily bypass natural standard filtering biological barriers, these persistent regional clusters represent the highest baseline public health priority found in this study.
+                </p>
+                <div class="mt-auto pt-2 border-top text-muted small"><i class="bi bi-cursor"></i> Click card to view pie chart</div>
+              </div>
+              
             </div>
           </div>
-          <div class="col-lg-4">
-            <div class="chart-card">
-              <h3>PM10 exposure</h3>
-              <p class="chart-sub">Sample data — share of population per class</p>
-              <canvas id="chart-pie-pm10"></canvas>
+
+          <!-- CARD 3: PM10 EXPOSURE -->
+          <div class="col-lg-4 col-md-6">
+            <div class="exposure-card" onclick="toggleExposureCard(this)">
+              <span class="card-action-hint"><i class="bi bi-arrow-repeat"></i></span>
+              
+              <!-- Front Side -->
+              <div class="card-face-front">
+                <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; color: #0b457e;">PM10 Exposure Profile</h3>
+                <p class="chart-sub mb-3" style="font-size: 0.82rem; color: #6c757d;">Calculated distribution from FRANCE_pm10_2023_chart.gpkg</p>
+                <div style="width: 100%; height: 280px; margin-top: auto; display: flex; align-items: center; justify-content: center;">
+                  <canvas id="chart-pie-pm10"></canvas>
+                </div>
+              </div>
+              
+              <!-- Back Side -->
+              <div class="card-face-back" style="border-top: 4px solid #f1c40f; padding-top: 1rem;">
+                <h5 class="text-warning h6 mb-3" style="font-weight: 600;"><i class="bi bi-info-circle"></i> PM<sub>10</sub> Exposure Analysis</h5>
+                <p class="small" style="line-height: 1.6; color: #495057;">
+                  Total population exposure was computed by dissolving the bivariate layer by pollution class (<code>pol_class_max</code>) and running Zonal Statistics against the raw WorldPop population count raster (sum statistic). Results show that <strong>59.3%</strong> of France's population lives in areas classified as PM<sub>10</sub> concentration level 1 (&le;15 &micro;g/m&sup3;), while <strong>40.7%</strong> is exposed to level 2 concentrations (&gt;15 and &le;25 &micro;g/m&sup3;). Although only <strong>20.8%</strong> of departments exceed the 15 &micro;g/m&sup3; threshold by area, these include the most densely populated zones of the country, notably the <strong>&Icirc;le-de-France</strong> region, resulting in a disproportionately high share of the population being exposed to elevated particulate matter levels.
+                </p>
+                <!-- <p class="small" style="line-height: 1.6; color: #495057;">
+                  Zonal statistics confirmed that dense tree canopy covers act as efficient mechanical buffers against heavy dust particle suspension, significantly decreasing local population baseline exposures.
+                </p> -->
+                <div class="mt-auto pt-2 border-top text-muted small"><i class="bi bi-cursor"></i> Click card to view pie chart</div>
+              </div>
+              
             </div>
           </div>
+
         </div>
       </div>
-    </section><!-- /Exposure -->
+      
+      <!-- Safe script function to execute display changes -->
+      <script>
+        function toggleExposureCard(cardElement) {
+          var front = cardElement.querySelector('.card-face-front');
+          var back = cardElement.querySelector('.card-face-back');
+          if (front.style.display === 'none') {
+            front.style.display = 'flex';
+            back.style.display = 'none';
+          } else {
+            front.style.display = 'none';
+            back.style.display = 'flex';
+          }
+        }
+      </script>
+    </section>
 
     <!-- Downloads -->
     <section class="section">
       <div class="container section-title text-start" data-aos="fade-up">
         <h2>Download the Outputs</h2>
-        <p>All 25 mandatory deliverables produced across Labs 2–4 (naming convention: <code>FRANCE_*</code>)</p>
+        <p>All 25 mandatory deliverables produced across Labs 2-4 (naming convention: <code>FRANCE_*</code>)</p>
       </div>
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">

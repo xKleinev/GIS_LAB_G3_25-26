@@ -69,6 +69,7 @@
               <li><strong>Assessing Atmospheric Concentration Shifts:</strong> Monitoring annual mean aggregation changes for three critical target criteria pollutants: Nitrogen Dioxide (NO<sub>2</sub>), Fine Particulate Matter (PM<sub>2.5</sub>), and Coarse Particulate Matter (PM<sub>10</sub>).</li>
               <li><strong>Evaluating Dynamic Population Exposure:</strong> Overlaying high-resolution demographic datasets with reclassified pollution layers to model human health risks across regional administrative corridors.</li>
             </ul>
+            </div>
           <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
             <div class="map-image-wrap">
               <img src="assets/img/results/france.jpeg" alt="France" class="img-fluid rounded shadow-sm">
@@ -79,7 +80,7 @@
     </section><!-- /Study area -->
 
     <!-- Data sources -->
-    <section class="section light-background">
+    <!-- <section class="section light-background">
       <div class="container section-title" data-aos="fade-up">
         <h2>Data Sources</h2>
         <p>All datasets are free and open, consistent with the course's reproducibility requirements</p>
@@ -102,27 +103,27 @@
                 <td>CAMS European air quality reanalysis (NO2, PM2.5, PM10)</td>
                 <td>Copernicus Atmosphere Monitoring Service</td>
                 <td>~10 km, daily/monthly</td>
-                <td>Steps 1–4: monthly, annual and change maps</td>
+                <td>Steps 1-4: monthly, annual and change maps</td>
               </tr>
               <tr>
                 <td><i class="bi bi-tree text-success"></i> Land cover</td>
                 <td>CORINE Land Cover</td>
                 <td>Copernicus Land Monitoring Service</td>
                 <td>100 m</td>
-                <td>Step 5: land cover change 2021–2023</td>
+                <td>Step 5: land cover change 2021-2023</td>
               </tr>
               <tr>
                 <td><i class="bi bi-people text-warning"></i> Population</td>
                 <td>Gridded population (GHSL / Eurostat)</td>
                 <td>JRC / Eurostat</td>
-                <td>~100–250 m</td>
-                <td>Steps 7–8: bivariate &amp; exposure analysis</td>
+                <td>~100-250 m</td>
+                <td>Steps 7-8: bivariate &amp; exposure analysis</td>
               </tr>
               <tr>
                 <td><i class="bi bi-bounding-box text-secondary"></i> Boundaries</td>
                 <td>NUTS administrative regions</td>
                 <td>Eurostat GISCO</td>
-                <td>Vector, 1:1M–1:10M</td>
+                <td>Vector, 1:1M-1:10M</td>
                 <td>Zonal statistics units, WebGIS AOI</td>
               </tr>
               <tr>
@@ -139,6 +140,65 @@
           <i class="bi bi-pencil-square"></i>
           <span>Confirm the exact CAMS product, version and download date you used, and update this table if you
           swapped in a different population or boundary dataset.</span>
+        </div>
+      </div>
+    </section>/Data sources -->
+    <!-- Data sources -->
+    <section class="section light-background">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Data Sources</h2>
+        <p>All datasets are free and open, consistent with the course's reproducibility requirements.</p>
+      </div>
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="data-table-wrap">
+          <table class="aq-table" style="width: 100%;">
+            <thead>
+              <tr>
+                <th>Theme</th>
+                <th>Dataset</th>
+                <th>Provider</th>
+                <th>Resolution</th>
+                <th>Used for</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><i class="bi bi-cloud-haze2 text-primary"></i> Air quality</td>
+                <td>CAMS European Air Quality Reanalysis (v2023)</td>
+                <td>Copernicus (CAMS)</td>
+                <td>0.1° (~10 km)</td>
+                <td>Steps 1–4: Trends &amp; AMAC</td>
+              </tr>
+              <tr>
+                <td><i class="bi bi-tree text-success"></i> Land cover</td>
+                <td>ESRI 10m Annual Land Cover (2021–2023)</td>
+                <td>Impact Observatory / Esri</td>
+                <td>100 m (resampled)</td>
+                <td>Step 5: Change detection</td>
+              </tr>
+              <tr>
+                <td><i class="bi bi-people text-warning"></i> Population</td>
+                <td>WorldPop Population Counts (R2025A v1)</td>
+                <td>WorldPop / Univ. Southampton</td>
+                <td>100 m</td>
+                <td>Steps 7–8: Exposure analysis</td>
+              </tr>
+              <tr>
+                <td><i class="bi bi-bounding-box text-secondary"></i> Boundaries</td>
+                <td>GAUL - Global Administrative Unit Layers (L2)</td>
+                <td>FAO / UN</td>
+                <td>Vector</td>
+                <td>Zonal statistics &amp; AOI masking</td>
+              </tr>
+              <tr>
+                <td><i class="bi bi-globe text-info"></i> Basemaps</td>
+                <td>OpenStreetMap &amp; CARTO Positron</td>
+                <td>OSM Foundation / CARTO</td>
+                <td>Web tiles</td>
+                <td>WebGIS context</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section><!-- /Data sources -->
@@ -171,132 +231,116 @@
           </div>
         </div>
       </div>
-    </section><!-- /Technologies -->
-
-    <!-- Processing pipeline -->
+    </section>
+    <!-- Step 8: Processing pipeline -->
     <section class="section light-background">
       <div class="container section-title" data-aos="fade-up">
         <h2>Processing Pipeline</h2>
-        <p>Steps 1–8, following the Lab 2–4 requirements, applied to France</p>
       </div>
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="accordion" id="pipelineAccordion">
 
+          <!-- Steps 1-2 -->
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step12">
-                Steps 1–2 · Monthly &amp; Annual Pollutant Maps
+                Steps 1-2: Monthly &amp; Annual Pollutant Maps
               </button>
             </h2>
             <div id="step12" class="accordion-collapse collapse show" data-bs-parent="#pipelineAccordion">
               <div class="accordion-body">
-                <p>CAMS reanalysis rasters for NO2, PM2.5 and PM10 were clipped to France for December 2023
-                (<code>FRANCE_CAMS_no2_2023_12.tif</code>, etc.) and averaged across all months of 2023 to produce
-                annual mean concentration surfaces (<code>FRANCE_average_no2_2023.tif</code>, etc.).</p>
-                <div class="edit-note"><i class="bi bi-pencil-square"></i><span>Describe your resampling / reprojection choices (target CRS, cell size) and any gap-filling you applied.</span></div>
+                <p>CAMS reanalysis NetCDF data was projected to <strong>WGS84 (EPSG:4326)</strong>. To manage the high-dimensionality of the hourly data, we aggregated time-series to monthly means, followed by a yearly average to produce annual concentration surfaces.</p>
               </div>
             </div>
           </div>
 
+          <!-- Step 3 -->
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3">
-                Step 3 · Concentration Maps
+                Step 3: Concentration Maps
               </button>
             </h2>
             <div id="step3" class="accordion-collapse collapse" data-bs-parent="#pipelineAccordion">
               <div class="accordion-body">
-                <p>Annual averages were reclassified into WHO / EU air-quality concentration classes to produce
-                <code>FRANCE_no2_concentration_map_2023.tif</code> and the PM2.5 / PM10 equivalents.</p>
-                <div class="edit-note"><i class="bi bi-pencil-square"></i><span>List the concentration class breakpoints you used and their source (e.g. WHO 2021 guidelines).</span></div>
+                <p>Annual means were reclassified into 5 distinct concentration classes using the thresholds defined by <strong>WHO (2021)</strong> guidelines. We utilized the <code>Reclassify by Table</code> tool in the Processing Toolbox to apply the specific breakpoint ranges for NO2, PM2.5, and PM10, ensuring each map effectively highlights zones exceeding safe exposure levels.</p>
               </div>
             </div>
           </div>
 
+          <!-- Step 4 -->
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step4">
-                Step 4 · 2021→2023 Annual Mean Aggregation Change (AMAC)
+                Step 4: Annual Mean Aggregation Change (AMAC)
               </button>
             </h2>
             <div id="step4" class="accordion-collapse collapse" data-bs-parent="#pipelineAccordion">
               <div class="accordion-body">
-                <p>Raster difference between the 2023 and 2021 annual means for each pollutant, styled with a
-                diverging blue→white→red ramp (<code>FRANCE_no2_2021_2023_AMAC_map.tif</code> + matching
-                <code>.qml</code> style). These are the <strong>mandatory</strong> layers shown on the WebGIS.</p>
-                <div class="edit-note"><i class="bi bi-pencil-square"></i><span>Explain your AMAC formula (e.g. mean2023 − mean2021) and how you chose the class breaks in the QML style.</span></div>
+                <p>To quantify atmospheric evolution, we applied the AMAC formula: <code>(Mean_2023 - Mean_2021)</code> using the <strong>Raster Calculator</strong>. This generated a diverging change detection surface. The symbology was standardized using a blue–white–red diverging <code>.qml</code> style, where blue represents concentration decrease and red signals hotspots of pollution increase.</p>
               </div>
             </div>
           </div>
 
+          <!-- Step 5 -->
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step5">
-                Step 5 · Land Cover Change &amp; Statistical Table
+                Step 5: Land Cover Change &amp; Statistical Table
               </button>
             </h2>
             <div id="step5" class="accordion-collapse collapse" data-bs-parent="#pipelineAccordion">
               <div class="accordion-body">
-                <p><code>FRANCE_LCC_2021_2023.tif</code> tracks land cover transitions between 2021 and 2023; the
-                resulting transition matrix is published as the statistical table on the <a href="results.html">Results</a> page.</p>
-                <div class="edit-note"><i class="bi bi-pencil-square"></i><span>Note which CORINE classes you grouped together and why, and highlight the most significant transitions you found.</span></div>
+                <p>Transitions were computed via the unique ID formula: <code>(LC_2021 * 100) + LC_2023</code>. <em>Technical Decision:</em> Due to performance constraints during vector <code>Dissolve</code> operations at 10m, we downsampled the Land Cover to a 100m resolution. This enabled reliable matrix generation, highlighting major urban expansion and deforestation patterns across France.</p>
               </div>
             </div>
           </div>
 
+          <!-- Step 6 -->
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step6">
-                Step 6 · Zonal Statistics &amp; Charts
+                Step 6: Zonal Statistics &amp; Charts
               </button>
             </h2>
             <div id="step6" class="accordion-collapse collapse" data-bs-parent="#pipelineAccordion">
               <div class="accordion-body">
-                <p>Mean / min / max pollutant values were computed per region for each pollutant
-                (<code>FRANCE_no2_zonal_statistics_2021_2023.gpkg</code> and equivalents) and charted on the
-                <a href="results.html">Results</a> page.</p>
-                <div class="edit-note"><i class="bi bi-pencil-square"></i><span>Mention the zonal statistics tool/algorithm used (e.g. QGIS "Zonal Statistics") and the region layer used as zones.</span></div>
+                <p>Using the <code>Zonal Statistics</code> algorithm, we calculated the mean, minimum, and maximum pollutant changes within our land cover transition zones. The result was vectorized to facilitate clear bar chart visualization, demonstrating the mitigation effect of tree cover persistence on local particulate matter levels.</p>
               </div>
             </div>
           </div>
 
+          <!-- Step 7 -->
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step7">
-                Step 7 · Bivariate Population × Pollution Mapping
+                Step 7: Bivariate Population X Pollution Mapping
               </button>
             </h2>
             <div id="step7" class="accordion-collapse collapse" data-bs-parent="#pipelineAccordion">
               <div class="accordion-body">
-                <p>Each zone was classified simultaneously by <code>pop_class_median</code> and
-                <code>pol_class_max</code> to build a 3×3 bivariate map per pollutant
-                (<code>FRANCE_no2_2023_bivariate.gpkg</code> and equivalents), shown with its legend on the
-                <a href="results.html">Results</a> page.</p>
-                <div class="edit-note"><i class="bi bi-pencil-square"></i><span>Describe how the population and pollution classes were broken into terciles/quantiles.</span></div>
+                <p>We integrated population density (classified into 5 quantiles) and pollutant classes into a 3x3/5x5 grid. The bivariate attribute was calculated using: <code>(pol_class_max * 10) + pop_class_median</code>. This map visually emphasizes regions where high population density overlaps with the highest pollution concentration tiers.</p>
               </div>
             </div>
           </div>
 
+          <!-- Step 8 -->
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step8">
-                Step 8 · Population Exposure (Pie Charts)
+                Step 8: Population Exposure (Pie Charts)
               </button>
             </h2>
             <div id="step8" class="accordion-collapse collapse" data-bs-parent="#pipelineAccordion">
               <div class="accordion-body">
-                <p>Zones were dissolved into a maximum of five features per pollutant, summing population
-                (<code>pop_sum</code>) within each <code>pol_class_max</code> class
-                (<code>FRANCE_no2_2023_chart.gpkg</code> and equivalents) — the basis for the pie charts on the
-                <a href="results.html">Results</a> page.</p>
-                <div class="edit-note"><i class="bi bi-pencil-square"></i><span>Explain what the five dissolved classes represent and any surprising exposure result you found.</span></div>
+                <p>Final exposure counts were derived by dissolving the bivariate layer to group by pollution class and summing population raster values via <code>Zonal Statistics</code>. This transformation resulted in a compact dataset (max 5 features per pollutant), representing the percentage share of the national demographic exposed to specific concentration levels.</p>
               </div>
             </div>
           </div>
 
         </div>
       </div>
-    </section><!-- /Pipeline -->
+    </section>
 
     <!-- Challenges -->
     <section class="section">
@@ -306,25 +350,41 @@
       </div>
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="pipeline-step h-100">
               <div class="icon"><i class="bi bi-signpost-split"></i></div>
               <h3 class="h6">Key Choices</h3>
-              <div class="edit-note"><i class="bi bi-pencil-square"></i><span>e.g. why you picked CAMS over ground stations, your target resolution, your AOI clipping strategy.</span></div>
+              <ul class="small ps-3">
+      <li><strong>CAMS Reanalysis over Ground Sensors:</strong> We prioritized CAMS data for its comprehensive spatial coverage across France, as ground-based station networks provide only point-specific data that is insufficient for national-level bivariate mapping.</li>
+      <li><strong>Clip-First Strategy:</strong> We mandated clipping all raw raster layers to the GAUL Level 2 administrative AOI at the start of the pipeline to optimize RAM usage during geoprocessing.</li>
+      <li><strong>Standardized Resampling:</strong> By choosing to align all layers to a 100m grid, we ensured that population, pollution, and land cover pixels were perfectly spatially coincident for our zonal statistic calculations.</li>
+    </ul>
+              <!-- <div class="edit-note"><i class="bi bi-pencil-square"></i><span>e.g. why you picked CAMS over ground stations, your target resolution, your AOI clipping strategy.</span></div> -->
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="pipeline-step h-100">
               <div class="icon"><i class="bi bi-exclamation-triangle"></i></div>
               <h3 class="h6">Problems Encountered</h3>
-              <div class="edit-note"><i class="bi bi-pencil-square"></i><span>e.g. CRS mismatches, missing months in CAMS, large raster processing times, GeoServer upload issues.</span></div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="pipeline-step h-100">
-              <div class="icon"><i class="bi bi-lightbulb"></i></div>
-              <h3 class="h6">What We'd Do Differently</h3>
-              <div class="edit-note"><i class="bi bi-pencil-square"></i><span>e.g. automate more of the pipeline in Python, use a higher-resolution population dataset.</span></div>
+              <div class="container" data-aos="fade-up">
+                <h5>Technical Challenges & Data Alignment Decisions</h3>
+                <p>
+                  During the processing phase of Lab 3, our group encountered significant performance bottlenecks when attempting 
+                  to perform geometric <code>Dissolve</code> operations on high-resolution Land Cover raster datasets (10m). 
+                  The computational overhead of processing multi-temporal transitions at 10m resolution exceeded available local 
+                  system memory, leading to recurring process timeouts.
+                </p>
+                <p>
+                  To resolve this, we performed a downsampling of the Land Cover data to a <strong>100m resolution</strong> framework. 
+                </p>
+                <ul>
+                  <li><strong>Why this decision?</strong> By aligning the high-resolution Land Cover data to the coarser 
+                  pollutant grid, we dramatically reduced the dataset dimensionality.</li>
+                  <li><strong>Scientific Impact:</strong> This alignment ensures that our cross-variable correlation analysis 
+                  (Step 6) is performed on topologically identical grid cells, preventing spatial mismatch errors and 
+                  significantly improving the reliability of our zonal statistics computations.</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
